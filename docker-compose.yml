@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  ocean-front:
+    build:
+      context: ./Frontend
+      args:
+        BACKEND_URL: ${BACKEND_URL}
+        AI_URL: ${AI_URL}
+    container_name: ocean-front
+    ports:
+      - "${FRONTEND_PORT}:80"
+  ocean-back:
+    build:
+      context: "./Backend"
+    container_name: ocean-backend
+    ports:
+      - "${BACKEND_PORT}:8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      TZ: "Asia/Seoul"
+    depends_on:
+      - ocean-db
+    volumes:
+      - images:/app/uploads/images
+  ocean-ai:
+    build:
+      context: "./AI"
+      args:
+        HF_TOKEN: ${HF_TOKEN}
+        BACKEND_URL: ${BACKEND_URL}
+    container_name: ocean-ai
+    ports:
+      - "${AI_PORT}:8000"
+    depends_on:
+      - ocean-db
+  ocean-db:
+    image: mysql:8
+    container_name: ocean-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PW}
+      MYSQL_DATABASE: ocean
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+  images:
