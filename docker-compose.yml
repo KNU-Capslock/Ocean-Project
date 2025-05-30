@@ -22,7 +22,7 @@ services:
     depends_on:
       - ocean-db
     volumes:
-      - images:/app/uploads/images
+      - images:/app/src/main/resources/static/images
   ocean-ai:
     build:
       context: "./AI"
