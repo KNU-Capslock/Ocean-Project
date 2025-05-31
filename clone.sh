@@ -17,4 +17,4 @@ pull_or_clone() {
 pull_or_clone https://github.com/KNU-Capslock/Ocean-Frontend.git Frontend
 pull_or_clone https://github.com/KNU-Capslock/Ocean-Backend.git Backend
 pull_or_clone https://github.com/KNU-Capslock/Ocean-AI.git AI
-pull_or_cline https://github.com/KNU-Capslock/Ocean-LLM.git LLM
+pull_or_clone https://github.com/KNU-Capslock/Ocean-LLM.git LLM
