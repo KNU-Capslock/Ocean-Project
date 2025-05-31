@@ -6,7 +6,7 @@ services:
       context: ./Frontend
       args:
         BACKEND_URL: ${BACKEND_URL}
-        AI_URL: ${AI_URL}
+        LLM_URL: ${LLM_URL}
     container_name: ocean-front
     ports:
       - "${FRONTEND_PORT}:80"
